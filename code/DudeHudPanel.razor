@@ -1,0 +1,92 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+<root>
+	@if(DudeGameManager.Instance.IsPlaying)
+	{
+		<div class="hud">
+			<div class="score">
+				<h3>Score:</h3>
+				<p>@($"{DudeGameManager.Instance.Score:n0}")</p>
+				<h3>Highscore:</h3>
+				<p>@($"{Highscore:n0}")</p>
+			</div>
+		</div>
+	}
+	else
+	{
+		<div class="game-over">
+			<h1>GAME OVER</h1>
+			@if(Leaderboard is not null)
+			{
+				<div class="leaderboard">
+					@foreach(var entry in Leaderboard.Entries)
+					{
+						<div class="entry @IsMe(entry)">
+							<div class="rank">@entry.Rank</div>
+							<div class="name">
+								<image texture=@AvatarTexture(entry) />
+								<label>@entry.DisplayName</label>
+							</div>
+							<div class="value">@entry.FormattedValue</div>
+						</div>
+					}
+				</div>
+			}
+			<h3>Press SPACE to Play Again!</h3>
+		</div>
+	}
+</root>
+
+@code
+{
+	int Highscore = 0;
+	Sandbox.Services.Leaderboards.Board Leaderboard;
+
+	protected override void OnStart()
+	{
+		base.OnStart();
+
+		FetchLeaderboardInfo();
+	}
+
+	protected override void OnUpdate()
+	{
+		base.OnUpdate();
+
+		if(DudeGameManager.Instance.Score > Highscore)
+		{
+			Highscore = DudeGameManager.Instance.Score;
+		}
+	}
+
+	string IsMe(Sandbox.Services.Leaderboards.Entry entry)
+    {
+        return entry.Me ? "me" : "";
+    }
+
+	string AvatarTexture(Sandbox.Services.Leaderboards.Entry entry)
+    {
+        return $"avatar:{entry.SteamId}";
+    }
+
+	async void FetchLeaderboardInfo()
+	{
+		Leaderboard = Sandbox.Services.Leaderboards.Get( "highscores" );
+		Leaderboard.MaxEntries = 10;
+		await Leaderboard.Refresh();
+		foreach ( var entry in Leaderboard.Entries )
+		{
+			if ( entry.SteamId == Game.SteamId )
+			{
+				Highscore = (int)entry.Value;
+			}
+		}
+	}
+
+	/// <summary>
+	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+	/// </summary>
+	protected override int BuildHash() => System.HashCode.Combine( DudeGameManager.Instance.IsPlaying, DudeGameManager.Instance.Score, Highscore );
+}

@@ -502,6 +502,26 @@
           ]
         }
       ]
+    },
+    {
+      "Id": "94e362a4-834c-46fd-8ee8-10348b8602a1",
+      "Name": "Screen UI",
+      "Position": "-64.32861,81.89421,110.5206",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "ScreenPanel",
+          "__enabled": true,
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ZIndex": 100
+        },
+        {
+          "__type": "DudeHudPanel",
+          "__enabled": true
+        }
+      ]
     }
   ],
   "SceneProperties": {

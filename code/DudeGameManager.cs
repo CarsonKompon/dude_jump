@@ -68,6 +68,7 @@ public sealed class DudeGameManager : Component
 		if ( !IsPlaying ) return;
 
 		IsPlaying = false;
+		Sandbox.Services.Stats.SetValue( "highscore", Score );
 	}
 
 	void SpawnPlatformAt( float height )

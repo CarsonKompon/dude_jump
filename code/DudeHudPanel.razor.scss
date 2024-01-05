@@ -1,0 +1,117 @@
+DudeHudPanel
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	font-family: Poppins;
+	font-size: 32px;
+
+	.hud
+	{
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+
+		color: white;
+		padding: 16px;
+		font-weight: 700;
+		text-transform: uppercase;
+
+		.score
+		{
+			flex-direction: column;
+		}
+	}
+
+	.game-over
+	{
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		gap: 32px;
+
+		background-color: rgba(black, 0.8);
+		opacity: 1;
+		transition: opacity 0.5s ease;
+
+		h1
+		{
+			font-size: 128px;
+			font-weight: 700;
+			margin: 0;
+			padding: 0;
+			text-align: center;
+			color: red;
+		}
+
+		h3
+		{
+			font-size: 64px;
+			font-weight: 700;
+			margin: 0;
+			padding: 0;
+			color: white;
+		}
+
+		> .leaderboard
+		{
+			flex-direction: column;
+			align-items: center;
+			width: 35%;
+			color: white;
+
+			.entry
+			{
+				align-items: center;
+				justify-content: space-between;
+				gap: 8px;
+				width: 100%;
+				padding: 8px;
+
+				.rank
+				{
+					justify-content: flex-end;
+				}
+
+				.name
+				{
+					flex-grow: 1;
+					gap: 8px;
+					align-items: center;
+
+					image
+					{
+						width: 48px;
+						height: 48px;
+					}
+
+					label
+					{
+						white-space: nowrap;
+						text-overflow: ellipsis;
+						max-width: 200px;
+					}
+				}
+
+				&.me
+				{
+					background-color: rgba( white, 0.1 );
+				}
+			}
+		}
+
+		&:intro
+		{
+			opacity: 0;;
+		}
+	}
+}
