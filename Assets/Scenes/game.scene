@@ -1,21 +1,43 @@
 {
+  "__guid": "af9dedf1-a625-49aa-a988-3fe6e3c51374",
   "GameObjects": [
     {
-      "Id": "11f45d21-7bf8-440b-89a9-72e00cec8278",
+      "__guid": "11f45d21-7bf8-440b-89a9-72e00cec8278",
       "Name": "Game Manager",
       "Position": "-3.630188,29.48578,78.35395",
       "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
       "Components": [
         {
           "__type": "DudeGameManager",
-          "__enabled": true,
-          "Camera": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
+          "__guid": "a69faa8d-4bde-494d-be46-ae72b3c0def3",
+          "Camera": {
+            "_type": "component",
+            "component_id": "d73d1f20-639b-43b0-9c89-a6c2e6c40d9c",
+            "go": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
+            "component_type": "DudeCamera"
+          },
           "OtherPrefabs": [
-            "prefabs/platform_breakable.prefab",
-            "prefabs/platform_bouncy.prefab"
+            {
+              "_type": "gameobject",
+              "prefab": "prefabs/platform_breakable.prefab"
+            },
+            {
+              "_type": "gameobject",
+              "prefab": "prefabs/platform_bouncy.prefab"
+            }
           ],
-          "PlatformPrefab": "prefabs/platform.prefab",
-          "Player": "36693621-1efe-44ca-ac87-f16c509cda00",
+          "PlatformPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/platform.prefab"
+          },
+          "Player": {
+            "_type": "component",
+            "component_id": "55cc0e73-c5fc-4828-933b-47a2e6a17333",
+            "go": "36693621-1efe-44ca-ac87-f16c509cda00",
+            "component_type": "DudeJumpPlayer"
+          },
           "Score": 0,
           "ScoreSpawnInterval": 10,
           "SpawnAhead": 300
@@ -23,15 +45,20 @@
       ]
     },
     {
-      "Id": "bfc59c12-1ed2-4f91-8956-a95a315eac3c",
+      "__guid": "bfc59c12-1ed2-4f91-8956-a95a315eac3c",
       "Name": "Sun",
       "Position": "-241.0097,-0.00004020096,246.6215",
       "Rotation": "-0.00000001818238,0.3050497,0.0000000000000009157649,0.9523365",
+      "Tags": "light_directional,light",
       "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
       "Components": [
         {
-          "__type": "DirectionalLight",
-          "__enabled": true,
+          "__type": "Sandbox.DirectionalLight",
+          "__guid": "d7d59e5b-fe06-4a59-b534-b8b9e3914e01",
+          "FogMode": "Enabled",
+          "FogStrength": 1,
           "LightColor": "0.91373,0.98039,1,1",
           "Shadows": true,
           "SkyColor": "0.05882,0.07451,0.08235,1"
@@ -39,38 +66,49 @@
       ]
     },
     {
-      "Id": "00344a8c-fa5e-45ae-b12a-10bb781a1dc3",
+      "__guid": "00344a8c-fa5e-45ae-b12a-10bb781a1dc3",
       "Name": "2D Skybox",
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
       "Components": [
         {
-          "__type": "SkyBox2D",
-          "__enabled": true,
+          "__type": "Sandbox.SkyBox2D",
+          "__guid": "55ebd5bc-5fa9-4188-9e6a-f7dfa3766d71",
           "SkyMaterial": "villagehouse_sky2.vmat",
           "Tint": "1,1,1,1"
         },
         {
-          "__type": "EnvmapProbe",
-          "__enabled": true,
+          "__type": "Sandbox.EnvmapProbe",
+          "__guid": "882ac36c-a959-4675-8f15-3c8be71a7292",
+          "Texture": "textures/cubemaps/default2.vtex",
           "Bounds": {
             "Mins": "-512,-512,-512",
             "Maxs": "512,512,512"
           },
+          "DelayBetweenUpdates": 0.1,
           "Feathering": 0.02,
+          "FrameInterval": 5,
+          "MaxDistance": 512,
           "Projection": "Sphere",
-          "Texture": "textures/cubemaps/default2.vtex",
-          "TintColor": "1,1,1,1"
+          "RenderDynamically": false,
+          "TintColor": "1,1,1,1",
+          "UpdateStrategy": "OnEnabled",
+          "ZFar": 4096,
+          "ZNear": 16
         }
       ]
     },
     {
-      "Id": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
+      "__guid": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
       "Name": "Camera",
       "Position": "-379.2429,0,161.4278",
       "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
       "Components": [
         {
-          "__type": "CameraComponent",
-          "__enabled": true,
+          "__type": "Sandbox.CameraComponent",
+          "__guid": "cbc2dfda-5cff-4bde-8aa6-612c3baa2eb0",
           "BackgroundColor": "0,0,0,1",
           "ClearFlags": "All",
           "FieldOfView": 60,
@@ -87,13 +125,16 @@
         },
         {
           "__type": "DudeCamera",
-          "__enabled": true,
+          "__guid": "d73d1f20-639b-43b0-9c89-a6c2e6c40d9c",
           "Offset": 20,
-          "Target": "36693621-1efe-44ca-ac87-f16c509cda00"
+          "Target": {
+            "_type": "gameobject",
+            "go": "36693621-1efe-44ca-ac87-f16c509cda00"
+          }
         },
         {
-          "__type": "Bloom",
-          "__enabled": true,
+          "__type": "Sandbox.Bloom",
+          "__guid": "420b3996-e7e1-4258-8684-e10a5e8fffb6",
           "BloomColor": {
             "color": [
               {
@@ -121,98 +162,101 @@
           "ThresholdWidth": 0
         },
         {
-          "__type": "AudioListener",
-          "__enabled": true
+          "__type": "Sandbox.AudioListener",
+          "__guid": "0e3ab7fb-0796-4955-920d-5b487a7eca70",
+          "UseCameraDirection": true
         }
       ],
       "Children": [
         {
-          "Id": "15b51ec4-16bd-40fd-907d-1b6d89cbced6",
+          "__guid": "15b51ec4-16bd-40fd-907d-1b6d89cbced6",
           "Name": "LeftWall",
           "Position": "379.2429,192,-97.4278",
           "Scale": "1,0.6898792,16.15987",
           "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
           "Components": [
             {
-              "__type": "ModelRenderer",
-              "__enabled": true,
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "28bf0ad1-9f7b-4dd8-b9b9-8ef371a7266a",
               "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
               "Model": "models/dev/box.vmdl",
               "RenderType": "On",
               "Tint": "0.35686,0.23137,0.37647,1"
             },
             {
-              "__type": "BoxCollider",
-              "__enabled": true,
+              "__type": "Sandbox.BoxCollider",
+              "__guid": "86320570-7df7-4883-af5f-aac455b5b949",
               "Center": "0,0,0",
               "IsTrigger": false,
               "Scale": "50,50,50",
-              "Static": true,
-              "Surface": null
+              "Static": true
             }
           ]
         },
         {
-          "Id": "91a1d943-4b23-45b4-8977-f37af838e2c6",
+          "__guid": "91a1d943-4b23-45b4-8977-f37af838e2c6",
           "Name": "RightWall",
           "Position": "379.2429,-192,-97.4278",
           "Scale": "1,0.6898792,16.15987",
           "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
           "Components": [
             {
-              "__type": "ModelRenderer",
-              "__enabled": true,
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "50315cc9-205f-41f8-ac63-46d5d745c458",
               "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
               "Model": "models/dev/box.vmdl",
               "RenderType": "On",
               "Tint": "0.35686,0.23137,0.37647,1"
             },
             {
-              "__type": "BoxCollider",
-              "__enabled": true,
+              "__type": "Sandbox.BoxCollider",
+              "__guid": "3e397681-fa84-4dd4-90c6-b0ad7b070301",
               "Center": "0,0,0",
               "IsTrigger": false,
               "Scale": "50,50,50",
-              "Static": true,
-              "Surface": null
+              "Static": true
             }
           ]
         },
         {
-          "Id": "333446cb-3a7d-4884-9f7a-83cb36e09e0e",
+          "__guid": "333446cb-3a7d-4884-9f7a-83cb36e09e0e",
           "Name": "KillTrigger",
           "Position": "379.2429,0.00002367447,-391.3304",
           "Tags": "trigger",
           "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
           "Components": [
             {
-              "__type": "BoxCollider",
-              "__enabled": true,
+              "__type": "Sandbox.BoxCollider",
+              "__guid": "ee05ccad-5808-4103-b90b-17c2edf7b6da",
               "Center": "0,0,0",
               "IsTrigger": true,
               "Scale": "776.2998,978.4999,141.6988",
-              "Static": false,
-              "Surface": null
+              "Static": false
             },
             {
               "__type": "DudeKillTrigger",
-              "__enabled": true
+              "__guid": "b4819c0f-a87f-44df-b8b2-00132d2be20f"
             }
           ]
         },
         {
-          "Id": "c7ff9056-cad1-4692-85ec-f5cad9fe081e",
+          "__guid": "c7ff9056-cad1-4692-85ec-f5cad9fe081e",
           "Name": "Star Emitter",
           "Position": "493.771,0,250.9644",
+          "Tags": "particles",
           "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
           "Components": [
             {
-              "__type": "ParticleEffect",
-              "__enabled": true,
+              "__type": "Sandbox.ParticleEffect",
+              "__guid": "a597ec54-47af-4ebf-bd27-d00fb80d5d5f",
               "Alpha": {
                 "Type": "Curve",
                 "CurveA": [
@@ -241,7 +285,6 @@
               },
               "Bumpiness": {},
               "Collision": false,
-              "CollisionIgnore": null,
               "CollisionRadius": 1,
               "Damping": {
                 "Constants": "5,0,0,0"
@@ -322,8 +365,8 @@
               "Tint": "1,1,1,1"
             },
             {
-              "__type": "ParticleSpriteRenderer",
-              "__enabled": true,
+              "__type": "Sandbox.ParticleSpriteRenderer",
+              "__guid": "7e5b703c-9f56-484c-a9ca-bed95ecea99f",
               "Additive": false,
               "BlurAmount": 0.5,
               "BlurOpacity": 0.91,
@@ -341,10 +384,11 @@
               "Texture": "materials/particle/base_sprite.vtex"
             },
             {
-              "__type": "ParticleBoxEmitter",
-              "__enabled": true,
+              "__type": "Sandbox.ParticleBoxEmitter",
+              "__guid": "03c76ff9-4501-4141-8348-b363413df2da",
               "Burst": 0,
               "Delay": 0,
+              "DestroyOnEnd": false,
               "Duration": 10,
               "Loop": true,
               "OnEdge": false,
@@ -356,43 +400,44 @@
       ]
     },
     {
-      "Id": "65d95ca4-ca0b-4548-8647-2a8c3843164a",
+      "__guid": "65d95ca4-ca0b-4548-8647-2a8c3843164a",
       "Name": "Floor",
       "Position": "0,0,-145.4223",
       "Scale": "1,8.259381,6.175327",
       "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
       "Components": [
         {
-          "__type": "ModelRenderer",
-          "__enabled": true,
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "2afe86cb-bdea-4a01-87bf-4bcf088791e1",
           "BodyGroups": 18446744073709551615,
-          "MaterialGroup": null,
-          "MaterialOverride": null,
           "Model": "models/dev/box.vmdl",
           "RenderType": "On",
           "Tint": "0.35686,0.23137,0.37647,1"
         },
         {
-          "__type": "BoxCollider",
-          "__enabled": true,
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "67fc79f9-c82b-43a6-82ad-d7689dd2b90c",
           "Center": "0,0,0",
           "IsTrigger": false,
           "Scale": "50,50,50",
-          "Static": true,
-          "Surface": null
+          "Static": true
         }
       ]
     },
     {
-      "Id": "36693621-1efe-44ca-ac87-f16c509cda00",
+      "__guid": "36693621-1efe-44ca-ac87-f16c509cda00",
       "Name": "Player",
       "Position": "0,0,13.70529",
       "Tags": "player",
       "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
       "Components": [
         {
           "__type": "DudeJumpPlayer",
-          "__enabled": true,
+          "__guid": "55cc0e73-c5fc-4828-933b-47a2e6a17333",
           "Friction": 3500,
           "JumpForce": 490,
           "Speed": 300
@@ -400,58 +445,59 @@
       ],
       "Children": [
         {
-          "Id": "eb3a27c0-e14f-403f-83af-833931b46656",
+          "__guid": "eb3a27c0-e14f-403f-83af-833931b46656",
           "Name": "Body",
           "Position": "0,0,0",
           "Rotation": "0,0,1,-0.0000006397578",
-          "Tags": "player",
           "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
           "Components": [
             {
-              "__type": "SkinnedModelRenderer",
-              "__enabled": true,
+              "__type": "Sandbox.SkinnedModelRenderer",
+              "__guid": "f1747f21-a8e9-44cd-94b1-8f6cd9677bc2",
               "BodyGroups": 0,
-              "BoneMergeTarget": null,
               "CreateBoneObjects": false,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
               "Model": "models/citizen/citizen.vmdl",
               "RenderType": "On",
               "Tint": "1,1,1,1"
             },
             {
-              "__type": "CitizenAnimationHelper",
-              "__enabled": true,
+              "__type": "Sandbox.Citizen.CitizenAnimationHelper",
+              "__guid": "5da64769-70a0-4c25-8f6d-bec7bc79a03b",
               "BodyWeight": 1,
-              "EyeSource": null,
               "EyesWeight": 1,
               "HeadWeight": 1,
               "Height": 1,
-              "IkLeftFoot": null,
-              "IkLeftHand": null,
-              "IkRightFoot": null,
-              "IkRightHand": null,
-              "LookAt": null,
               "LookAtEnabled": true,
-              "Target": "eb3a27c0-e14f-403f-83af-833931b46656"
+              "Target": {
+                "_type": "component",
+                "component_id": "f1747f21-a8e9-44cd-94b1-8f6cd9677bc2",
+                "go": "eb3a27c0-e14f-403f-83af-833931b46656",
+                "component_type": "SkinnedModelRenderer"
+              }
             }
           ],
           "Children": [
             {
-              "Id": "74ed527e-c0c9-4d37-8133-87ff6448cdf3",
+              "__guid": "74ed527e-c0c9-4d37-8133-87ff6448cdf3",
               "Name": "Suit",
               "Position": "0,0,0",
-              "Tags": "player",
               "Enabled": true,
+              "NetworkMode": 2,
+              "NetworkInterpolation": true,
               "Components": [
                 {
-                  "__type": "SkinnedModelRenderer",
-                  "__enabled": true,
+                  "__type": "Sandbox.SkinnedModelRenderer",
+                  "__guid": "4950e556-8740-43df-95ac-91b80440806f",
                   "BodyGroups": 18446744073709551615,
-                  "BoneMergeTarget": "eb3a27c0-e14f-403f-83af-833931b46656",
+                  "BoneMergeTarget": {
+                    "_type": "component",
+                    "component_id": "f1747f21-a8e9-44cd-94b1-8f6cd9677bc2",
+                    "go": "eb3a27c0-e14f-403f-83af-833931b46656",
+                    "component_type": "SkinnedModelRenderer"
+                  },
                   "CreateBoneObjects": false,
-                  "MaterialGroup": null,
-                  "MaterialOverride": null,
                   "Model": "models/citizen_clothes/full_outfit/scifi_trooper_armour/models/scifi_trooper_armour.vmdl",
                   "RenderType": "On",
                   "Tint": "1,1,1,1"
@@ -459,20 +505,24 @@
               ]
             },
             {
-              "Id": "9e138cf0-c8e9-4e6c-8d2b-a4b8f3405efd",
+              "__guid": "9e138cf0-c8e9-4e6c-8d2b-a4b8f3405efd",
               "Name": "Helmet",
               "Position": "0,0,0",
-              "Tags": "player",
               "Enabled": true,
+              "NetworkMode": 2,
+              "NetworkInterpolation": true,
               "Components": [
                 {
-                  "__type": "SkinnedModelRenderer",
-                  "__enabled": true,
+                  "__type": "Sandbox.SkinnedModelRenderer",
+                  "__guid": "df92d43f-af3b-4157-a070-1f9dd0a1b26d",
                   "BodyGroups": 18446744073709551615,
-                  "BoneMergeTarget": "eb3a27c0-e14f-403f-83af-833931b46656",
+                  "BoneMergeTarget": {
+                    "_type": "component",
+                    "component_id": "f1747f21-a8e9-44cd-94b1-8f6cd9677bc2",
+                    "go": "eb3a27c0-e14f-403f-83af-833931b46656",
+                    "component_type": "SkinnedModelRenderer"
+                  },
                   "CreateBoneObjects": false,
-                  "MaterialGroup": null,
-                  "MaterialOverride": null,
                   "Model": "models/citizen_clothes/hat/scifi_trooper_helmet/models/scifi_trooper_helmet.vmdl",
                   "RenderType": "On",
                   "Tint": "1,1,1,1"
@@ -482,36 +532,38 @@
           ]
         },
         {
-          "Id": "aca973f3-8caa-4930-a3af-bc028170ff4d",
+          "__guid": "aca973f3-8caa-4930-a3af-bc028170ff4d",
           "Name": "Collider",
           "Position": "0,0,0",
           "Rotation": "0,0,1,-0.0000006397578",
-          "Tags": "player",
           "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
           "Components": [
             {
-              "__type": "CapsuleCollider",
-              "__enabled": true,
+              "__type": "Sandbox.CapsuleCollider",
+              "__guid": "d83d13f3-094f-4ac8-b17a-4741ac822f84",
               "End": "0,0,25.69999",
               "IsTrigger": false,
               "Radius": 11.400001,
               "Start": "0,0,11.80001",
-              "Static": false,
-              "Surface": null
+              "Static": false
             }
           ]
         }
       ]
     },
     {
-      "Id": "94e362a4-834c-46fd-8ee8-10348b8602a1",
+      "__guid": "94e362a4-834c-46fd-8ee8-10348b8602a1",
       "Name": "Screen UI",
       "Position": "-64.32861,81.89421,110.5206",
       "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
       "Components": [
         {
-          "__type": "ScreenPanel",
-          "__enabled": true,
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "665779ec-e4a1-4f6a-b711-00ad487a8d55",
           "AutoScreenScale": true,
           "Opacity": 1,
           "Scale": 1,
@@ -519,22 +571,37 @@
         },
         {
           "__type": "DudeHudPanel",
-          "__enabled": true
+          "__guid": "08737788-275f-4508-a2ea-eda69135156a"
         }
       ]
     }
   ],
   "SceneProperties": {
     "FixedUpdateFrequency": 50,
-    "Lerping": true,
     "MaxFixedUpdates": 5,
     "NetworkFrequency": 60,
+    "NetworkInterpolation": true,
     "ThreadedAnimation": true,
     "TimeScale": 1,
-    "UseFixedUpdate": true
+    "UseFixedUpdate": true,
+    "NavMesh": {
+      "Enabled": false,
+      "IncludeStaticBodies": true,
+      "IncludeKeyframedBodies": true,
+      "EditorAutoUpdate": true,
+      "AgentHeight": 64,
+      "AgentRadius": 16,
+      "AgentStepSize": 18,
+      "AgentMaxSlope": 40,
+      "ExcludedBodies": "",
+      "IncludedBodies": ""
+    }
   },
   "Title": "minimal",
   "Description": "",
+  "LastSaved": "2024-05-06T16:59:28.7950324-04:00",
+  "ResourceVersion": 1,
+  "__version": 1,
   "__references": [
     "fennec.night_sky_1"
   ]

@@ -23,40 +23,40 @@ public sealed class DudeGameManager : Component
 
 	protected override void OnStart()
 	{
-		for ( int i = 0; i < 4; i++ )
+		for (int i = 0; i < 4; i++)
 		{
-			SpawnPlatformAt( 50 + i * 80 );
+			SpawnPlatformAt(50 + i * 80);
 		}
 		StartGame();
 	}
 
 	protected override void OnUpdate()
 	{
-		Log.Info( IsPlaying );
+		Log.Info(IsPlaying);
 
-		if ( IsPlaying )
+		if (IsPlaying)
 		{
-			Score = Math.Max( (int)(Player.Transform.Position.z / 10f), Score );
+			Score = Math.Max((int)(Player.Transform.Position.z / 10f), Score);
 
-			if ( Score > lastScoreSpawn + ScoreSpawnInterval )
+			if (Score > lastScoreSpawn + ScoreSpawnInterval)
 			{
 				lastScoreSpawn += ScoreSpawnInterval;
 
-				SpawnPlatformAt( Player.Transform.Position.z + SpawnAhead );
+				SpawnPlatformAt(Player.Transform.Position.z + SpawnAhead);
 			}
 		}
 		else
 		{
-			if ( Input.Pressed( "Jump" ) )
+			if (Input.Pressed("Jump"))
 			{
-				GameManager.ActiveScene.LoadFromFile( "scenes/game.scene" );
+				Game.ActiveScene.LoadFromFile("scenes/game.scene");
 			}
 		}
 	}
 
 	public void StartGame()
 	{
-		if ( IsPlaying ) return;
+		if (IsPlaying) return;
 
 		Score = 0;
 		lastScoreSpawn = 0;
@@ -65,26 +65,26 @@ public sealed class DudeGameManager : Component
 
 	public void EndGame()
 	{
-		if ( !IsPlaying ) return;
+		if (!IsPlaying) return;
 
 		IsPlaying = false;
-		Sandbox.Services.Stats.SetValue( "highscore", Score );
+		Sandbox.Services.Stats.SetValue("highscore", Score);
 	}
 
-	void SpawnPlatformAt( float height )
+	void SpawnPlatformAt(float height)
 	{
-		var platform = SceneUtility.Instantiate( PlatformPrefab );
-		platform.Transform.Position = new Vector3( 0, Random.Shared.Float( -140f, 140f ), height );
-		platform.Transform.Scale = platform.Transform.Scale.WithY( Random.Shared.Float( 0.7f, 1.1f ) );
+		var platform = SceneUtility.Instantiate(PlatformPrefab);
+		platform.Transform.Position = new Vector3(0, Random.Shared.Float(-140f, 140f), height);
+		platform.Transform.Scale = platform.Transform.Scale.WithY(Random.Shared.Float(0.7f, 1.1f));
 
-		if ( Random.Shared.Float() < 0.3f )
+		if (Random.Shared.Float() < 0.3f)
 		{
 			var others = new List<GameObject>();
-			others.Add( PlatformPrefab );
-			others.AddRange( OtherPrefabs );
-			var prefab = others[Random.Shared.Next( 0, others.Count )];
-			var obj = SceneUtility.Instantiate( prefab );
-			obj.Transform.Position = new Vector3( 0, Random.Shared.Float( -140f, 140f ), height + Random.Shared.Float( -60f, 60f ) );
+			others.Add(PlatformPrefab);
+			others.AddRange(OtherPrefabs);
+			var prefab = others[Random.Shared.Next(0, others.Count)];
+			var obj = SceneUtility.Instantiate(prefab);
+			obj.Transform.Position = new Vector3(0, Random.Shared.Float(-140f, 140f), height + Random.Shared.Float(-60f, 60f));
 		}
 	}
 }
