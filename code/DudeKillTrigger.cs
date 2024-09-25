@@ -9,7 +9,6 @@ public sealed class DudeKillTrigger : Component, Component.ITriggerListener
 
 	public void OnTriggerEnter( Collider other )
 	{
-		Log.Info( $"Triggered by {other}" );
 		var player = other.Components.Get<DudeJumpPlayer>( FindMode.EverythingInSelfAndParent );
 		if ( player is not null )
 		{
